@@ -78,5 +78,5 @@ test("buy my dam router", async ({ page }) => {
   const stripe3rdFrame = page.frameLocator("iframe").nth(2);
   await stripe3rdFrame.locator('[placeholder="CVC"]').fill(CC_CVC);
 
-  // await page.getByRole("button", { name: "Pay Now" }).click();
+  await page.getByRole("button", { name: "Pay Now" }).click();
 });
