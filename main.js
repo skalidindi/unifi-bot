@@ -7,6 +7,7 @@ function buyTheThing() {
     if (!err) {
       return;
     }
+    console.log("Product is out of stock, retrying in 1 minute...");
     delay(60000)
       .then(() => {
         buyTheThing();
