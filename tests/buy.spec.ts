@@ -1,5 +1,4 @@
-import { Page, expect, test } from "@playwright/test";
-import exp from "constants";
+import { expect, test } from "@playwright/test";
 
 const {
   FIRST_NAME,
@@ -16,17 +15,11 @@ const PRODUCT =
   "https://store.ui.com/us/en/pro/category/all-unifi-cloud-gateways/products/ucg-ultra";
 // const TEST_PRODUCT =
 //   "https://store.ui.com/us/en/pro/category/all-switching/products/usw-flex-mini";
-const POLLING_INTERVAL = 60000;
-
-function checkIfProductIsAvailable(page: Page) {
-  return page.getByRole("button", { name: "Add to Cart" }).isVisible();
-}
 
 test("buy my dam router", async ({ page }) => {
   await page.goto(PRODUCT);
-  let isProductAvailable = await checkIfProductIsAvailable(page);
 
-  expect(isProductAvailable).toBe(true);
+  await expect(page.getByRole("button", { name: "Add to Cart" })).toBeVisible();
 
   // Start buying process
   await page.getByRole("button", { name: "Add to Cart" }).click();
