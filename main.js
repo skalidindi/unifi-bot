@@ -21,8 +21,12 @@ async function buyTheThing() {
   let exitCode = 1;
   while (exitCode !== 0) {
     exitCode = await cmd("npx", "playwright", "test");
-    console.log("Product is out of stock, retrying in 1 minute...");
-    await delay(2000);
+    if (exitCode !== 0) {
+      console.log("Product is out of stock, retrying in 1 minute...");
+      await delay(60000);
+    } else {
+      console.log("Product successfully purchased!");
+    }
   }
 }
 

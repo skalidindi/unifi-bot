@@ -46,13 +46,13 @@ test("buy my dam router", async ({ page }) => {
 
   await page.getByPlaceholder("Address 1").fill(ADDRESS);
 
-  await page.waitForTimeout(500);
+  await page.waitForTimeout(1000);
 
   await page.keyboard.press("ArrowDown");
 
   await page.keyboard.press("Enter");
 
-  await page.waitForTimeout(500);
+  await page.waitForTimeout(1000);
 
   await page.getByRole("button", { name: "Continue to Shipping" }).click();
   await page.waitForLoadState("networkidle");
