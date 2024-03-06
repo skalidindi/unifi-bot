@@ -21,7 +21,7 @@ test("buy my dam router", async ({ page }) => {
 
   await expect(page.getByRole("button", { name: "Add to Cart" })).toBeVisible();
 
-  // Start buying process
+  console.log("Add to cart button is visible... starting buying process");
   await page.getByRole("button", { name: "Add to Cart" }).click();
   await page.waitForLoadState("networkidle");
 
@@ -70,6 +70,8 @@ test("buy my dam router", async ({ page }) => {
 
   const stripe3rdFrame = page.frameLocator("iframe").nth(2);
   await stripe3rdFrame.locator('[placeholder="CVC"]').fill(CC_CVC);
+
+  await page.waitForTimeout(1000);
 
   await page.getByRole("button", { name: "Pay Now" }).click();
 });
