@@ -9,7 +9,20 @@ const {
   CC_NUMBER,
   CC_EXPIRATION,
   CC_CVC,
+  DISCORD_WEBHOOK_URL,
 } = process.env as any;
+
+async function sendDiscordMessage(message) {
+  fetch(DISCORD_WEBHOOK_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      content: message,
+    }),
+  });
+}
 
 const PRODUCT =
   "https://store.ui.com/us/en/pro/category/all-unifi-cloud-gateways/products/ucg-ultra";
@@ -22,6 +35,8 @@ test("buy my dam router", async ({ page }) => {
   await expect(page.getByRole("button", { name: "Add to Cart" })).toBeVisible();
 
   console.log("Add to cart button is visible... starting buying process");
+  sendDiscordMessage(`Buy ${PRODUCT} from now`);
+
   await page.getByRole("button", { name: "Add to Cart" }).click();
   await page.waitForLoadState("networkidle");
 
