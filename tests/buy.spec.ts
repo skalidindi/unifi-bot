@@ -61,13 +61,13 @@ test("buy my dam router", async ({ page }) => {
 
   await page.getByPlaceholder("Address 1").fill(ADDRESS);
 
-  await page.waitForTimeout(1000);
+  await page.waitForTimeout(2000);
 
   await page.keyboard.press("ArrowDown");
 
   await page.keyboard.press("Enter");
 
-  await page.waitForTimeout(1000);
+  await page.waitForTimeout(2000);
 
   await page.getByRole("button", { name: "Continue to Shipping" }).click();
   await page.waitForLoadState("networkidle");
@@ -86,7 +86,6 @@ test("buy my dam router", async ({ page }) => {
   const stripe3rdFrame = page.frameLocator("iframe").nth(2);
   await stripe3rdFrame.locator('[placeholder="CVC"]').fill(CC_CVC);
 
-  await page.waitForTimeout(1000);
-
+  await page.waitForTimeout(2000);
   await page.getByRole("button", { name: "Pay Now" }).click();
 });
